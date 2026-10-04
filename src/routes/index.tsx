@@ -46,11 +46,11 @@ const say = (id: string, text: string, fade = true) => {
 };
 
 // The image opens the live site; the arrow opens the code.
-const projects: { number: string; title: string; tags: string[]; blurb: string; live?: string; code: string }[] = [
+const projects: { number: string; title: string; tags: string[]; blurb: string; live?: string; image?: string; code: string }[] = [
   { number: "01", title: "Fitzy", tags: ["AI", "App"], blurb: "an AI-powered fitness and wellness app, built with Flutter and Firebase.", code: "https://github.com/rahmann292006-netizen/Fitzy-AI-Fitness-App" },
   { number: "02", title: "AI Engineer Journey", tags: ["Open source", "Experiments"], blurb: "my path to AI engineer, documented in public: notes, projects and mistakes.", code: "https://github.com/rahmann292006-netizen/AI-Engineer-Journey" },
   { number: "03", title: "WeatherGPT", tags: ["AI", "Agents"], blurb: "a weather assistant you can talk to.", code: "https://github.com/rahmann292006-netizen/WeatherGPT" },
-  { number: "04", title: "VANTACODES", tags: ["App", "Experiments"], blurb: "a code playground for rapid prototyping and sharing.", code: "https://github.com/rahmann292006-netizen/VANTACODES" },
+  { number: "04", title: "VANTACODES", tags: ["App", "Experiments"], blurb: "a code playground for rapid prototyping and sharing.", image: "/images/vantacodes-preview.webp", code: "https://github.com/rahmann292006-netizen/VANTACODES" },
   { number: "05", title: "MJ Fitness", tags: ["AI", "App"], blurb: "personalized fitness tracking with AI-driven insights.", code: "https://github.com/rahmann292006-netizen/MJ-Fitness" },
 ];
 
@@ -1034,7 +1034,8 @@ function Works({ filter, setFilter }: { filter: string; setFilter: (filter: stri
                   <span className="font-serif text-5xl">{project.title}</span>
                 </a>
               ) : (
-                <div className="grid aspect-[4/3] place-items-center overflow-hidden border border-border bg-muted" aria-label={`${project.title} preview image not supplied`}>
+                <div className="grid aspect-[4/3] place-items-center overflow-hidden border border-border bg-muted" aria-label={`${project.title} preview`}>
+                  {project.image && <img src={project.image} alt={`${project.title} project preview`} className="z-10 col-start-1 row-start-1 h-full w-full object-cover" onError={(event) => { event.currentTarget.hidden = true; }} />}
                   <span className="font-serif text-5xl">{project.title}</span>
                 </div>
               )}
